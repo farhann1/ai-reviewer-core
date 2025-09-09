@@ -67,12 +67,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/ai-reviewer-core.git"
+    "url": "https://github.com/nawaz-adobe/ai-reviewer-core.git"
   },
   "bugs": {
-    "url": "https://github.com/your-org/ai-reviewer-core/issues"
+    "url": "https://github.com/nawaz-adobe/ai-reviewer-core/issues"
   },
-  "homepage": "https://github.com/your-org/ai-reviewer-core#readme",
+  "homepage": "https://github.com/nawaz-adobe/ai-reviewer-core#readme",
   "jest": {
     "testEnvironment": "node",
     "collectCoverageFrom": [

@@ -52,11 +52,11 @@ class LLMCoordinator {
     async getReview(hunk) {
         const messages = [
             { 
-                role: "system", 
-                content: "You are an AI assistant that reviews code changes. Always respond with pure JSON only, no markdown formatting." 
+                role: 'system', 
+                content: 'You are an AI assistant that reviews code changes. Always respond with pure JSON only, no markdown formatting.' 
             },
             { 
-                role: "user", 
+                role: 'user', 
                 content: this.buildReviewPrompt(hunk)
             }
         ];
@@ -82,11 +82,11 @@ class LLMCoordinator {
     async getSummary(diffData) {
         const messages = [
             { 
-                role: "system", 
-                content: "You are an AI assistant that summarizes incremental code changes in pull requests. Focus on what's new or modified since the last review." 
+                role: 'system', 
+                content: 'You are an AI assistant that summarizes incremental code changes in pull requests. Focus on what\'s new or modified since the last review.' 
             },
             { 
-                role: "user", 
+                role: 'user', 
                 content: this.buildSummaryPrompt(diffData)
             }
         ];

@@ -256,8 +256,9 @@ index 123..456 100644
  final existing code`;
 
       const result = parseDiff(diff);
-      expect(result[0].hunkHeader.oldStart).toBe(103);
-      expect(result[0].hunkHeader.newStart).toBe(105);
+      // Hunk header should preserve original values (not be mutated)
+      expect(result[0].hunkHeader.oldStart).toBe(100);
+      expect(result[0].hunkHeader.newStart).toBe(100);
       
       // First addition should be at line 101
       expect(result[0].changes[1].lineNumber).toBe(101);

@@ -13,6 +13,7 @@ function parseDiff(diff) {
     let currentHunk = [];
     let currentFile = '';
     let currentHunkHeader = null;
+    let lineCounters = null;
 
     for (const line of lines) {
         if (line.startsWith('diff --git')) {
@@ -26,6 +27,7 @@ function parseDiff(diff) {
             currentHunk = [];
             currentFile = line.slice(11).split(' ')[0].slice(2);
             currentHunkHeader = null;
+            lineCounters = null;
             continue;
         }
 
@@ -40,6 +42,10 @@ function parseDiff(diff) {
                 currentHunk = [];
             }
             currentHunkHeader = parseHunkHeader(line);
+            lineCounters = currentHunkHeader ? {
+                oldLine: currentHunkHeader.oldStart,
+                newLine: currentHunkHeader.newStart
+            } : null;
             continue;
         }
 
@@ -47,7 +53,7 @@ function parseDiff(diff) {
             continue;
         }
 
-        const lineInfo = calculateLineNumber(line, currentHunkHeader);
+        const lineInfo = calculateLineNumber(line, lineCounters);
         currentHunk.push({
             content: line,
             type: line[0] === '+' ? 'addition' : line[0] === '-' ? 'deletion' : 'context',
@@ -69,7 +75,7 @@ function parseDiff(diff) {
 function parseHunkHeader(header) {
     // Parse @@ -1,7 +1,9 @@ format
     const match = header.match(/@@ -(\d+)(?:,\d+)? \+(\d+)(?:,\d+)? @@/);
-    if (!match) return null;
+    if (!match) {return null;}
     
     return {
         oldStart: parseInt(match[1], 10),
@@ -77,21 +83,23 @@ function parseHunkHeader(header) {
     };
 }
 
-function calculateLineNumber(line, hunkHeader) {
-    if (!hunkHeader) return null;
+function calculateLineNumber(line, lineCounters) {
+    if (!lineCounters) {
+        return null;
+    }
     
     // For added lines ('+'), return the new file line number
     if (line.startsWith('+')) {
-        return hunkHeader.newStart++;
+        return lineCounters.newLine++;
     }
     // For removed lines ('-'), return the old file line number
     else if (line.startsWith('-')) {
-        return hunkHeader.oldStart++;
+        return lineCounters.oldLine++;
     }
-    // For context lines ' ', increment both
+    // For context lines ' ', increment both and return new line number
     else {
-        hunkHeader.oldStart++;
-        return hunkHeader.newStart++;
+        lineCounters.oldLine++;
+        return lineCounters.newLine++;
     }
 }
 

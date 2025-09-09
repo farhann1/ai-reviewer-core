@@ -65,7 +65,7 @@ class CodeReviewer {
      * @param {Object} options - Review options
      * @returns {Array} Array of comments for this hunk
      */
-    async reviewHunk(hunk, options = {}) {
+    async reviewHunk(hunk, _options = {}) {
         if (!hunk || !hunk.filename || !hunk.changes) {
             throw new Error('Invalid hunk data');
         }
@@ -97,7 +97,7 @@ class CodeReviewer {
      * @param {Object} options - Summary options
      * @returns {string} Generated summary
      */
-    async generateSummary(diffData, options = {}) {
+    async generateSummary(diffData, _options = {}) {
         try {
             return await getSummaryFromLLM(diffData);
         } catch (error) {
@@ -140,13 +140,13 @@ class CodeReviewer {
      */
     formatResults(results, format = 'json') {
         switch (format.toLowerCase()) {
-            case 'markdown':
-                return this.formatAsMarkdown(results);
-            case 'text':
-                return this.formatAsText(results);
-            case 'json':
-            default:
-                return JSON.stringify(results, null, 2);
+        case 'markdown':
+            return this.formatAsMarkdown(results);
+        case 'text':
+            return this.formatAsText(results);
+        case 'json':
+        default:
+            return JSON.stringify(results, null, 2);
         }
     }
 
@@ -154,7 +154,7 @@ class CodeReviewer {
      * Format results as markdown
      */
     formatAsMarkdown(results) {
-        let output = `# AI Code Review\n\n`;
+        let output = '# AI Code Review\n\n';
         
         if (results.summary) {
             output += `## Summary\n${results.summary}\n\n`;
@@ -167,7 +167,7 @@ class CodeReviewer {
                 output += `${comment.body}\n\n`;
             }
         } else {
-            output += `## Comments\nNo issues found.\n\n`;
+            output += '## Comments\nNo issues found.\n\n';
         }
 
         output += `---\n*Reviewed ${results.metadata.totalHunks} hunks at ${results.metadata.reviewedAt}*\n`;
@@ -191,7 +191,7 @@ class CodeReviewer {
                 output += `  ${comment.body}\n\n`;
             }
         } else {
-            output += `No issues found.\n\n`;
+            output += 'No issues found.\n\n';
         }
 
         output += `Reviewed ${results.metadata.totalHunks} hunks at ${results.metadata.reviewedAt}\n`;

@@ -1,5 +1,5 @@
 {
-  "name": "@ai-reviewer/core",
+  "name": "ai-reviewer-core",
   "version": "1.0.0",
   "description": "Core AI code review logic - platform agnostic",
   "main": "dist/index.js",

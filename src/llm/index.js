@@ -62,7 +62,7 @@ class LLMCoordinator {
         ];
 
         const options = {
-            maxTokens: 500,
+            maxTokens: 1000,
             temperature: 0.1
         };
 

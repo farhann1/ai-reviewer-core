@@ -1,20 +1,20 @@
 # Changelog
 
-All notable changes to @ai-reviewer/core will be documented in this file.
+All notable changes to ai-reviewer-core will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2024-09-09
+## [1.0.0] - 2025-01-08
 
 ### Added
-- Initial release of @ai-reviewer/core
+- Initial release of ai-reviewer-core
 - Platform-agnostic AI code review engine
-- Support for OpenAI LLM provider
+- Support for OpenAI LLM provider (gpt-4o-mini)
 - Git diff parsing with structured hunk analysis
-- Multiple output formats (JSON, Markdown, Text)
+- Direct structured data output for platform integration
 - Comprehensive API for code review automation
-- Full test suite with 98% coverage
+- Robust test suite for core functionality
 - CommonJS and ESM module support
 
 ### Core Features
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `reviewHunk(hunk, options)` - Single hunk review
 - `generateSummary(diffData, options)` - Summary generation
 - `filterComments(comments, filters)` - Comment filtering
-- `formatResults(results, format)` - Multi-format output
+- Direct structured data output for platform integration
 
 ### Dependencies
 - axios ^1.3.4 - HTTP client for LLM API calls

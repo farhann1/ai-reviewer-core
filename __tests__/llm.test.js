@@ -67,12 +67,12 @@ describe('llm', () => {
       expect(mockedAxios.post).toHaveBeenCalledWith(
         'https://api.openai.com/v1/chat/completions',
         expect.objectContaining({
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-4o-mini',
           messages: expect.arrayContaining([
             expect.objectContaining({ role: 'system' }),
             expect.objectContaining({ role: 'user' })
           ]),
-          max_tokens: 500,
+          max_tokens: 1000,
           temperature: 0.1
         }),
         expect.objectContaining({
@@ -221,7 +221,7 @@ index 123..456 100644
       expect(mockedAxios.post).toHaveBeenCalledWith(
         'https://api.openai.com/v1/chat/completions',
         expect.objectContaining({
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-4o-mini',
           messages: expect.arrayContaining([
             expect.objectContaining({ 
               role: 'system',

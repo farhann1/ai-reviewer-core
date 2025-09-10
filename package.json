@@ -1,26 +1,21 @@
 {
-  "name": "ai-reviewer-core",
+  "name": "ai-review-core",
   "version": "1.0.0",
   "description": "Core AI code review logic - platform agnostic",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.mjs"
     },
     "./reviewer": {
-      "require": "./dist/reviewer.js",
-      "types": "./dist/reviewer.d.ts"
+      "require": "./dist/reviewer.js"
     },
     "./parseDiff": {
-      "require": "./dist/parseDiff.js", 
-      "types": "./dist/parseDiff.d.ts"
+      "require": "./dist/parseDiff.js"
     },
     "./llm": {
-      "require": "./dist/llm/index.js",
-      "types": "./dist/llm/index.d.ts"
+      "require": "./dist/llm/index.js"
     }
   },
   "files": [

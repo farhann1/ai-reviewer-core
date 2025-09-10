@@ -1,23 +1,23 @@
-# @ai-reviewer/core
+# ai-reviewer-core
 
 > Platform-agnostic AI code review library
 
-[![npm version](https://badge.fury.io/js/%40ai-reviewer%2Fcore.svg)](https://badge.fury.io/js/%40ai-reviewer%2Fcore)
-[![CI](https://github.com/your-org/ai-reviewer-core/workflows/Core%20Package%20CI/badge.svg)](https://github.com/your-org/ai-reviewer-core/actions)
-[![Coverage Status](https://coveralls.io/repos/github/your-org/ai-reviewer-core/badge.svg)](https://coveralls.io/github/your-org/ai-reviewer-core)
+[![npm version](https://badge.fury.io/js/ai-reviewer-core.svg)](https://badge.fury.io/js/ai-reviewer-core)
+[![CI](https://github.com/nawaz-adobe/ai-reviewer-core/workflows/Core%20Package%20CI/badge.svg)](https://github.com/nawaz-adobe/ai-reviewer-core/actions)
+[![Coverage Status](https://coveralls.io/repos/github/nawaz-adobe/ai-reviewer-core/badge.svg)](https://coveralls.io/github/nawaz-adobe/ai-reviewer-core)
 
 This is the core library that powers AI code review across different platforms (GitHub Actions, Jenkins, etc.). It provides platform-agnostic logic for parsing diffs, communicating with LLMs, and generating code review comments.
 
 ## Installation
 
 ```bash
-npm install @ai-reviewer/core
+npm install ai-reviewer-core
 ```
 
 ## Quick Start
 
 ```javascript
-const { CodeReviewer, parseDiff } = require('@ai-reviewer/core');
+const { CodeReviewer, parseDiff } = require('ai-reviewer-core');
 
 // Set up environment
 process.env.LLM_API_KEY = 'your-openai-api-key';
@@ -92,10 +92,6 @@ Generates a summary of the changes.
 
 Filters comments based on criteria.
 
-##### `formatResults(results, format)`
-
-Formats review results ('json', 'markdown', 'text').
-
 ### parseDiff(diffData)
 
 Parses git diff data into structured hunks.
@@ -144,15 +140,24 @@ class CustomProvider extends OpenAIProvider {
 }
 ```
 
-#### Multiple Output Formats
+#### Direct Platform Integration
 
 ```javascript
 const results = await reviewer.reviewChanges(diffData);
 
-// Different output formats
-const json = reviewer.formatResults(results, 'json');
-const markdown = reviewer.formatResults(results, 'markdown');
-const text = reviewer.formatResults(results, 'text');
+// Use structured data directly with Git platforms
+results.comments.forEach(comment => {
+  github.createLineComment({
+    path: comment.filename,
+    line: comment.line,
+    body: comment.body  // Ready-to-post markdown
+  });
+});
+
+// Optional summary as PR comment
+if (results.summary) {
+  github.createReview({ body: results.summary });
+}
 ```
 
 ## Environment Variables

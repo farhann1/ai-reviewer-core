@@ -11,10 +11,22 @@ class OpenAIProvider {
      * Format request for OpenAI API
      */
     formatRequest(messages, options = {}) {
+        // Validate messages
+        if (!Array.isArray(messages) || messages.length === 0) {
+            throw new Error('Messages must be a non-empty array');
+        }
+        
+        // Validate message format
+        for (const msg of messages) {
+            if (!msg.role || !msg.content) {
+                throw new Error('Each message must have role and content');
+            }
+        }
+        
         return {
-            model: options.model || 'gpt-3.5-turbo',
+            model: options.model || 'gpt-4o-mini',
             messages,
-            max_tokens: options.maxTokens || 500,
+            max_tokens: options.maxTokens || 1000,
             temperature: options.temperature || 0.1
         };
     }
@@ -23,10 +35,25 @@ class OpenAIProvider {
      * Parse OpenAI response
      */
     parseResponse(responseData) {
-        if (responseData.choices && responseData.choices[0] && responseData.choices[0].message) {
-            return responseData.choices[0].message.content;
+        // Validate response structure
+        if (!responseData?.choices?.[0]?.message?.content) {
+            throw new Error('Invalid OpenAI response format');
         }
-        throw new Error('Invalid OpenAI response format');
+        
+        const choice = responseData.choices[0];
+        
+        // Check if response was truncated
+        if (choice.finish_reason === 'length') {
+            console.warn('OpenAI response was truncated due to token limit');
+        }
+        
+        // Validate content exists and is meaningful
+        const content = choice.message.content;
+        if (!content || content.trim().length === 0) {
+            throw new Error('Empty response from OpenAI');
+        }
+        
+        return content;
     }
 
     /**

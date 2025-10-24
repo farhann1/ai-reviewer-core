@@ -1,6 +1,6 @@
 {
-  "name": "ai-review-core",
-  "version": "1.0.0",
+  "name": "ai-reviewer-core",
+  "version": "1.1.0",
   "description": "Core AI code review logic - platform agnostic",
   "main": "dist/index.js",
   "exports": {
@@ -62,12 +62,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nawaz-adobe/ai-reviewer-core.git"
+    "url": "https://github.com/farhann1/ai-reviewer-core.git"
   },
   "bugs": {
-    "url": "https://github.com/nawaz-adobe/ai-reviewer-core/issues"
+    "url": "https://github.com/farhann1/ai-reviewer-core/issues"
   },
-  "homepage": "https://github.com/nawaz-adobe/ai-reviewer-core#readme",
+  "homepage": "https://github.com/farhann1/ai-reviewer-core#readme",
   "jest": {
     "testEnvironment": "node",
     "collectCoverageFrom": [

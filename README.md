@@ -3,8 +3,8 @@
 > Platform-agnostic AI code review library
 
 [![npm version](https://badge.fury.io/js/ai-reviewer-core.svg)](https://badge.fury.io/js/ai-reviewer-core)
-[![CI](https://github.com/nawaz-adobe/ai-reviewer-core/workflows/Core%20Package%20CI/badge.svg)](https://github.com/nawaz-adobe/ai-reviewer-core/actions)
-[![Coverage Status](https://coveralls.io/repos/github/nawaz-adobe/ai-reviewer-core/badge.svg)](https://coveralls.io/github/nawaz-adobe/ai-reviewer-core)
+[![CI](https://github.com/farhann1/ai-reviewer-core/workflows/Core%20Package%20CI/badge.svg)](https://github.com/farhann1/ai-reviewer-core/actions)
+[![Coverage Status](https://coveralls.io/repos/github/farhann1/ai-reviewer-core/badge.svg)](https://coveralls.io/github/farhann1/ai-reviewer-core)
 
 This is the core library that powers AI code review across different platforms (GitHub Actions, Jenkins, etc.). It provides platform-agnostic logic for parsing diffs, communicating with LLMs, and generating code review comments.
 
@@ -170,8 +170,8 @@ if (results.summary) {
 
 This core library is used by:
 
-- **[@ai-reviewer/github-action](https://github.com/your-org/ai-reviewer-action)** - GitHub Actions integration
-- **[@ai-reviewer/jenkins](https://github.com/your-org/ai-reviewer-jenkins)** - Jenkins integration
+- **[@ai-reviewer/github-action](https://github.com/farhann1/ai-reviewer-action)** - GitHub Actions integration
+- **[@ai-reviewer/jenkins](https://github.com/farhann1/ai-reviewer-jenkins)** - Jenkins integration
 
 ## Contributing
 
